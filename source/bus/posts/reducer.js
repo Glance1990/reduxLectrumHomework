@@ -12,9 +12,9 @@ export const postsReducer = (state = initialState, action) => {
             return fromJS(action.payload);
 
         case types.CREATE_POST:
-        	return state.unshift(fromJS(action.payload));
+            return state.unshift(fromJS(action.payload));
 
-        default: 
+        default:
             return state;
     }
 }

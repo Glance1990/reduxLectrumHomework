@@ -2,12 +2,12 @@
 import { object, string, boolean } from 'yup';
 
 // Instruments
-import { invite } from '../../REST' 
+import { invite } from '../../REST'
 
 export const login = {
     shape: {
-        email:    '',
-        password: '',
+        email: 'elon1990.musk@space.x',
+        password: '12345',
         remember: false,
     },
     schema: object().shape({
@@ -24,15 +24,15 @@ export const login = {
 export const signup = {
     shape: {
         firstName: 'Elon',
-        lastName:  'Mask',
-        email:     'elon.musk@space.x',
-        password:  '12345',
+        lastName: 'Mask',
+        email: 'elon.musk@space.x',
+        password: '12345',
         invite,
     },
     schema: object().shape({
         firstName: string().required(),
-        lastName:  string().required(),
-        email:     string()
+        lastName: string().required(),
+        email: string()
             .required()
             .email(),
         password: string()

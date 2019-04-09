@@ -8,12 +8,12 @@ import { uiActions } from '../../../ui/actions';
 import { profileActions } from '../../../profile/actions';
 
 
-export function* signup({ payload: userInfo }) {
+export function* login({ payload: userInfo }) {
 
     try {
         yield put(uiActions.startFetching());
 
-        const response = yield apply(api, api.auth.signup, [userInfo]);
+        const response = yield apply(api, api.auth.login, [userInfo]);
 
         const { data: profile, message } = yield apply(response, response.json);
 
@@ -22,6 +22,7 @@ export function* signup({ payload: userInfo }) {
         }
 
         yield put(profileActions.fillProfile(profile));
+
         yield put(authActions.authenticate());
 
     } catch (error) {

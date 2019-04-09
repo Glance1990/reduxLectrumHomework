@@ -8,13 +8,13 @@ import { types } from '../types';
 import { createPost, fetchPosts } from './workers';
 
 function* watchCreatePost() {
-	yield takeEvery(types.CREATE_POST_ASYNC, createPost);
+    yield takeEvery(types.CREATE_POST_ASYNC, createPost);
 }
 
 function* watchFetchPosts() {
-	yield takeEvery(types.FETCH_POST_ASYNC, fetchPosts);
+    yield takeEvery(types.FETCH_POST_ASYNC, fetchPosts);
 }
 
 export function* watchPosts() {
-	yield all([call(watchCreatePost), call(watchFetchPosts)]);
+    yield all([call(watchCreatePost), call(watchFetchPosts)]);
 }
