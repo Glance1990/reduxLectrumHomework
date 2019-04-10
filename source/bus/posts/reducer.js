@@ -13,9 +13,13 @@ export const postsReducer = (state = initialState, action) => {
 
         case types.CREATE_POST:
             return state.unshift(fromJS(action.payload));
-        
+
         case types.CLEAR_POSTS:
             return state.clear();
+
+        case types.REMOVE_POST:
+            const index = state.findIndex(data => data.get('id') === action.payload);
+            return state.delete(index);
 
         default:
             return state;

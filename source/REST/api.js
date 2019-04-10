@@ -1,11 +1,11 @@
 import { MAIN_URL, groupId } from './config';
 
 export const api = {
-    get token () {
+    get token() {
         return localStorage.getItem('token');
     },
     auth: {
-        login (credentials) {
+        login(credentials) {
             return fetch(`${MAIN_URL}/user/login`, {
                 method: 'POST',
                 headers: {
@@ -14,7 +14,7 @@ export const api = {
                 body: JSON.stringify(credentials),
             })
         },
-        authenticate () {
+        authenticate() {
             return fetch(`${MAIN_URL}/user/login`, {
                 method: 'POST',
                 headers: {
@@ -23,7 +23,7 @@ export const api = {
                 body: JSON.stringify({ token: this.token }),
             })
         },
-        signup (userInfo) {
+        signup(userInfo) {
             return fetch(`${MAIN_URL}/user/${groupId}`, {
                 method: 'POST',
                 headers: {
@@ -32,17 +32,17 @@ export const api = {
                 body: JSON.stringify(userInfo)
             })
         },
-        logout () {
+        logout() {
             return fetch(`${MAIN_URL}/user/logout`, {
                 method: 'GET',
                 headers: {
                     Authorization: this.token,
                 },
             })
-        },       
+        },
     },
     posts: {
-        fetch () {
+        fetch() {
             console.log(this.token);
             return fetch(`${MAIN_URL}/feed`, {
                 method: 'GET',
@@ -51,7 +51,7 @@ export const api = {
                 },
             });
         },
-        create (comment) {
+        create(comment) {
             return fetch(`${MAIN_URL}/feed`, {
                 method: 'POST',
                 headers: {
@@ -59,6 +59,15 @@ export const api = {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ comment })
+            })
+        },
+        remove(postId) {
+            return fetch(`${MAIN_URL}/feed/${postId}`, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: this.token,
+                    'Content-Type': 'application/json',
+                }
             })
         },
     },

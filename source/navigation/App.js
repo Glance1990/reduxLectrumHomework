@@ -29,16 +29,16 @@ const mapDispatchToProps = {
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 export default class App extends Component {
-    componentDidMount () {
+    componentDidMount() {
         this.props.initializeAsync();
     }
-    render () {
+    render() {
         const { isAuthenticated, isInitialized } = this.props;
 
         if (!isInitialized) {
-            return <Loading />;
+            return <Loading / > ;
         }
 
-        return isAuthenticated ? <Private /> : <Public />;
+        return isAuthenticated ? < Private / > : < Public / > ;
     }
 }

@@ -7,8 +7,7 @@ import { actions as authActions } from '../../actions';
 import { uiActions } from '../../../ui/actions';
 import { profileActions } from '../../../profile/actions';
 
-
-export function* authenticate () {
+export function* authenticate() {
 
     try {
         yield put(uiActions.startFetching());
@@ -18,6 +17,12 @@ export function* authenticate () {
         const { data: profile, message } = yield apply(response, response.json);
 
         if (response.status !== 200) {
+            if (response.status === 401) {
+                yield apply(localStorage, localStorage.removeItem, ['token']);
+                yield apply(localStorage, localStorage.removeItem, ['remember']);
+
+                return null;
+            }
             throw new Error(message);
         }
 
