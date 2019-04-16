@@ -7,8 +7,7 @@ import { actions as authActions } from '../../actions';
 import { uiActions } from '../../../ui/actions';
 import { profileActions } from '../../../profile/actions';
 
-
-export function* login({ payload: credentials }) {
+export function* login ({ payload: credentials }) {
 
     try {
         yield put(uiActions.startFetching());
@@ -32,7 +31,7 @@ export function* login({ payload: credentials }) {
         yield put(authActions.authenticate());
 
     } catch (error) {
-        yield put(uiActions.emitError(error, 'signup worker'));
+        yield put(uiActions.emitError(error, 'login worker'));
     } finally {
         yield put(uiActions.stopFetching());
     }

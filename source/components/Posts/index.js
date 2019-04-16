@@ -12,21 +12,23 @@ import Styles from './styles.m.css';
 import { Composer, Catcher, Post } from '../../components';
 
 //Actions
-import { postsActions } from '../../bus/posts/actions'; 
+import { postsActions } from '../../bus/posts/actions';
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.posts,
+        posts:   state.posts,
         profile: state.profile,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: bindActionCreators({ 
-            fetchPostsAsync: postsActions.fetchPostsAsync, 
-            createPostAsync: postsActions.createPostAsync, 
+        actions: bindActionCreators({
+            fetchPostsAsync: postsActions.fetchPostsAsync,
+            createPostAsync: postsActions.createPostAsync,
             removePostAsync: postsActions.removePostAsync,
+            likePostAsync:   postsActions.likePostAsync,
+            unlikePostAsync: postsActions.unlikePostAsync,
         }, dispatch),
     };
 };
