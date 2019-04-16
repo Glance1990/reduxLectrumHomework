@@ -14,31 +14,35 @@ import { Loading } from '../components';
 // Actions
 import { actions as authActions } from '../bus/auth/actions';
 
+// WebSocket
+import { joinSocketChannel } from '../init/socket';
+
 const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.auth.get('isAuthenticated'),
-        isInitialized: state.auth.get('isInitialized'),
+        isInitialized:   state.auth.get('isInitialized'),
     };
 };
 
 const mapDispatchToProps = {
-    initializeAsync: authActions.initializeAsync
-}
+    initializeAsync: authActions.initializeAsync,
+};
 
 @hot(module)
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 export default class App extends Component {
-    componentDidMount() {
+    componentDidMount () {
         this.props.initializeAsync();
+        joinSocketChannel();
     }
-    render() {
+    render () {
         const { isAuthenticated, isInitialized } = this.props;
 
         if (!isInitialized) {
-            return <Loading / > ;
+            return <Loading />;
         }
 
-        return isAuthenticated ? < Private / > : < Public / > ;
+        return isAuthenticated ? <Private /> : <Public />;
     }
 }

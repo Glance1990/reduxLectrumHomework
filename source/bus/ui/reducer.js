@@ -5,18 +5,25 @@ import { Map } from 'immutable';
 import { types } from './types';
 
 const initialState = Map({
-	isFetching: false
+    isFetching: false,
+    isOnline:   false,
 });
 
 export const uiReducer = (state = initialState, action) => {
-	switch (action.type) {
-		case types.START_FETCHING:
-			return state.set('isFetching', true);
+    switch (action.type) {
+        case types.START_FETCHING:
+            return state.set('isFetching', true);
 
-		case types.STOP_FETCHING:
-			return state.set('isFetching', false);
+        case types.STOP_FETCHING:
+            return state.set('isFetching', false);
 
-		default:
-			return state;
-	}
-}
+        case types.SET_ONLINE_STATE:
+            return state.set('isFetching', true);
+
+        case types.SET_OFFLINE_STATE:
+            return state.set('isFetching', false);
+
+        default:
+            return state;
+    }
+};
