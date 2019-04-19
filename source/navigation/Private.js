@@ -8,7 +8,22 @@ import { Feed, Profile, NewPassword } from '../pages';
 // Instruments
 import { book } from './book';
 
+// WebSocket
+import { socket } from '../init/socket';
+
 export default class Private extends Component {
+
+    componentDidMount () {
+        const { listenPosts } = this.props;
+
+        listenPosts();
+    }
+
+    componentWillUnmount () {
+        console.log('remove');
+        socket.removeListener('create');
+    }
+
     render () {
         return (
             <Switch>

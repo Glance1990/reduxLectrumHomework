@@ -12,14 +12,14 @@ import { login } from '../../bus/forms/shapes';
 import { actions as authActions } from '../../bus/auth/actions';
 
 const mapStateToProps = (state) => {
-	return {
-		isFetching: state.ui.get('isFetching')
-	}
-}
+    return {
+        isFetching: state.ui.get('isFetching'),
+    };
+};
 
 const mapDispatchToProps = {
-	loginAsync: authActions.loginAsync,
-}
+    loginAsync: authActions.loginAsync,
+};
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class LoginForm extends Component {
@@ -32,7 +32,6 @@ export default class LoginForm extends Component {
     };
 
     _submitLoginForm = (credentials) => {
-        console.log(this.props);
         this.props.loginAsync(credentials);
     };
 

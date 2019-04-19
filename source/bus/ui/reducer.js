@@ -18,10 +18,10 @@ export const uiReducer = (state = initialState, action) => {
             return state.set('isFetching', false);
 
         case types.SET_ONLINE_STATE:
-            return state.set('isFetching', true);
+            return state.set('isOnline', true);
 
         case types.SET_OFFLINE_STATE:
-            return state.set('isFetching', false);
+            return state.set('isOnline', false);
 
         default:
             return state;

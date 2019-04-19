@@ -17,7 +17,7 @@ export const uiActions = {
             type: types.SET_ONLINE_STATE,
         };
     },
-    setOflineState: () => {
+    setOfflineState: () => {
         return {
             type: types.SET_OFFLINE_STATE,
         };

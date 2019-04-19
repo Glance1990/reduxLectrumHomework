@@ -43,8 +43,6 @@ export const api = {
     },
     posts: {
         fetch () {
-            console.log(this.token);
-
             return fetch(`${MAIN_URL}/feed`, {
                 method:  'GET',
                 headers: {
