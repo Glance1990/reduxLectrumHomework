@@ -20,7 +20,6 @@ export default class Private extends Component {
     }
 
     componentWillUnmount () {
-        console.log('remove');
         socket.removeListener('create');
     }
 

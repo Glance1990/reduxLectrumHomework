@@ -13,6 +13,7 @@ import { Composer, Catcher, Post } from '../../components';
 
 //Actions
 import { postsActions } from '../../bus/posts/actions';
+import { usersActions } from '../../bus/users/actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -29,6 +30,7 @@ const mapDispatchToProps = (dispatch) => {
             removePostAsync: postsActions.removePostAsync,
             likePostAsync:   postsActions.likePostAsync,
             unlikePostAsync: postsActions.unlikePostAsync,
+            fetchUsersAsync: usersActions.fetchUsersAsync,
         }, dispatch),
     };
 };
@@ -38,7 +40,10 @@ export default class Posts extends Component {
     componentDidMount () {
         const { actions } = this.props;
 
+        console.log('this.props', this.props);
+
         actions.fetchPostsAsync();
+        actions.fetchUsersAsync();
     }
 
     render () {
